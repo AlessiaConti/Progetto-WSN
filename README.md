@@ -45,6 +45,8 @@ Il Classification Learner è un'applicazione di MATLAB che facilita l'addestrame
 Dalla matrice di confusione si osserva un buon addestramento, sbagliando solo per un campione.
 - [x] Nel caso del Multilevel classification, dopo aver applicato la correlazione tra features per capire quali fossero le più utili da considerare e utilizzando il modello Tree, si è riuscito ad ottenere un’accuracy del 78.4%.
 
+## Autori
+_Alessia Conti, Fulvio Michele Luigi Buono, Alessandro Polverari, Alex Voltattorni, Lorenzo Mozzoni, Raul Fratini_
 
 
 
