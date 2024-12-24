@@ -20,27 +20,23 @@ Per realizzare queste operazioni di pre-processing è stato implementato uno scr
 
 ## Estrazione delle features
 L'estrazione delle features è un passaggio fondamentale che serve a trasformare i dati in una rappresentazione più informativa e utile per l'addestramento dei modelli di Machine Learning. Le features sono state estratte a partire dalla trasformata di Fourier (FFT) del vettore accelerazione campionato e filtrato, ovvero la densità spettrale di potenza (PSD), che rappresenta la distribuzione della potenza di un segnale nelle diverse frequenze. Le features principali sono riportate di seguito: 
-- [x] Peak: il valore massimo della densità spettrale di potenza, cioè l’ampiezza del picco principale
-- [x] Fo: la frequenza associata al picco massimo, cioè la frequenza dominante, quella con il contenuto energetico maggiore nel segnale
-- [x] F50: la frequenza mediana sotto la quale è contenuto il 50% della potenza totale del segnale 
-- [x] SF50: la larghezza dello spettro attorno alla frequenza F50, cioè la banda di frequenze che contiene il 68% della potenza totale del segnale.
-- [x] statistiche: massimo e minimo, media, moda e mediana, deviazione standard, asimmetria dello spettro (skewness) e appiattimento (curtosi), ampiezza picco-picco.
+- *Peak*: il valore massimo della densità spettrale di potenza, cioè l’ampiezza del picco principale
+- *Fo*: la frequenza associata al picco massimo, cioè la frequenza dominante, quella con il contenuto energetico maggiore nel segnale
+- *F50*: la frequenza mediana sotto la quale è contenuto il 50% della potenza totale del segnale 
+- *SF50*: la larghezza dello spettro attorno alla frequenza F50, cioè la banda di frequenze che contiene il 68% della potenza totale del segnale.
+- *statistiche*: massimo e minimo, media, moda e mediana, deviazione standard, asimmetria dello spettro (skewness) e appiattimento (curtosi), ampiezza picco-picco.
 
-L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati sono stati raccolti in una tabella in formato CSV. [(2.Features)](2.Features)
+L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati sono stati raccolti in una tabella in formato CSV. [(2.Features)](2.Features) E' stata aggiunta anche una colonna per la classificazione binaria: partendo dal valore UPDRS reale, viene assegnata l’etichetta 0 in caso di non tremore, 1 per i livelli di tremore 1-2-3-4. Ciò potrebbe essere utile a causa della scarsità dei dati estratti: classificando in base a tremore/non tremore, l’accuratezza dovrebbe migliorare rispetto alla classificazione per livelli.
 
 ## Stima del livello UPDRS e normalizzazione
 Il livello UPDRS viene assegnato in base all'intervallo della variabile peak:
-
-``` peak < 5 → Livello 0 ```
-
-``` 5.001 < peak < 32 → Livello 1 ```
-
-``` 32.001 < peak < 200 → Livello 2 ```
-
-``` 200.001 < peak < 300 → Livello 3 ```
-
-``` peak > 300.001 → Livello 4 ```
-
+```
+peak < 5 → Livello 0 
+5.001 < peak < 32 → Livello 1 
+32.001 < peak < 200 → Livello 2 
+200.001 < peak < 300 → Livello 3 
+peak > 300.001 → Livello 4
+```
 L’obiettivo è il confronto tra questa stima basata su soglie statiche, rispetto al valore che si ottiene con il ML, utilizzando come input le features normalizzate [(3.Normalizzazione)](3.Normalizzazione). 
 
 ## Bilanciamento delle classi
