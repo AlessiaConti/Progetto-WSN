@@ -1,4 +1,4 @@
-# Analisi del tremore 📊
+# Analisi del tremore 📉📈
 Progetto per il corso di Wireless Sensor Network for IoT
 
 ## Obiettivo
