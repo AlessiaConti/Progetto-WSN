@@ -16,17 +16,17 @@ Per realizzare queste operazioni di pre-processing è stato implementato uno scr
 - [x] Dopo le operazioni di pre-processing del dataset per ottenere i dati utili per il nostro scopo, abbiamo proseguito ricampionando e filtrando i segnali di accelerazione, utilizzando il padding.
 - [x] Dopodiché si è passati al calcolo della funzione di autocorrelazione e della densità spettrale di potenza, necessaria per l’operazione di estrazione delle features
 
-## Estrazione delle features e normalizzazione
-L'estrazione delle features [(2.Features)](2.Features) è un passaggio fondamentale che serve a trasformare i dati in una rappresentazione più informativa e utile per l'addestramento dei modelli di Machine Learning. Le features sono state estratte a partire dalla trasformata di Fourier (FFT) del vettore accelerazione campionato e filtrato, ovvero la densità spettrale di potenza (PSD), che rappresenta la distribuzione della potenza di un segnale nelle diverse frequenze. Le features principali sono riportate di seguito: 
+## Estrazione delle features
+L'estrazione delle features è un passaggio fondamentale che serve a trasformare i dati in una rappresentazione più informativa e utile per l'addestramento dei modelli di Machine Learning. Le features sono state estratte a partire dalla trasformata di Fourier (FFT) del vettore accelerazione campionato e filtrato, ovvero la densità spettrale di potenza (PSD), che rappresenta la distribuzione della potenza di un segnale nelle diverse frequenze. Le features principali sono riportate di seguito: 
 - [x] Peak: il valore massimo della densità spettrale di potenza, cioè l’ampiezza del picco principale
 - [x] Fo: la frequenza associata al picco massimo, cioè la frequenza dominante, quella con il contenuto energetico maggiore nel segnale
 - [x] F50: la frequenza mediana sotto la quale è contenuto il 50% della potenza totale del segnale 
 - [x] SF50: la larghezza dello spettro attorno alla frequenza F50, cioè la banda di frequenze che contiene il 68% della potenza totale del segnale.
 - [x] statistiche: massimo e minimo, media, moda e mediana, deviazione standard, asimmetria dello spettro (skewness) e appiattimento (curtosi), ampiezza picco-picco.
 
-L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati sono stati raccolti in una tabella in formato CSV.
+L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati sono stati raccolti in una tabella in formato CSV. [(2.Features)](2.Features)
 
-## Stima del livello UPDRS
+## Stima del livello UPDRS e normalizzazione
 Il livello UPDRS viene assegnato in base all'intervallo della variabile peak:
 - peak < 5 → Livello 0
 - 5.001 < peak < 32 → Livello 1
@@ -34,14 +34,22 @@ Il livello UPDRS viene assegnato in base all'intervallo della variabile peak:
 - 200.001 < peak < 300 → Livello 3
 - peak > 300.001 → Livello 4
 
-L’obiettivo è il confronto tra questa stima basata su soglie statiche, rispetto al valore che si ottiene con il ML, utilizzando come input le features normalizzate [(3.Normalizzazione)](3.Normalizzazione). Un problema riscontrato è che i dati sono pochi e il dataset è sbilanciato: per bilanciare le classi è necessario effettuare data augmentation tramite la funzione [SMOTE](https://it.mathworks.com/matlabcentral/fileexchange/75168-oversampling-imbalanced-data-smote-related-algorithms) di MATLAB, che risolve questo problema generando nuovi esempi sintetici per le classi minoritarie. [(4.Bilanciamento classi)](4.Bilanciamento%20classi)
+L’obiettivo è il confronto tra questa stima basata su soglie statiche, rispetto al valore che si ottiene con il ML, utilizzando come input le features normalizzate [(3.Normalizzazione)](3.Normalizzazione). 
+
+## Bilanciamento delle classi
+Un problema riscontrato è che i dati sono pochi e il dataset è sbilanciato: per bilanciare le classi è necessario effettuare data augmentation tramite la funzione [SMOTE](https://it.mathworks.com/matlabcentral/fileexchange/75168-oversampling-imbalanced-data-smote-related-algorithms) di MATLAB, che risolve questo problema generando nuovi esempi sintetici per le classi minoritarie. [(4.Bilanciamento classi)](4.Bilanciamento%20classi)
 
 ## Classification Learner
 Il Classification Learner è un'applicazione di MATLAB che facilita l'addestramento di modelli di classificazione usando diversi algoritmi e set di features. Prima di utilizzare il Classification Learner, è necessario avere i dati organizzati in una tabella contenente le features e la colonna delle etichette di classe. Il Classification Learner supporta diversi algoritmi di classificazione, tra cui: Decision Tree (alberi decisionali), Support Vector Machine (SVM), K-Nearest Neighbors (KNN), Ensemble Methods, Logistic Regression, Naive Bayes. Dopo aver addestrato il modello si possono valutare le sue prestazioni visualizzando le metriche di Accuracy, Matrice di Confusione e Scatter Plot. [(5.Classification Learner)](5.Classification%20Learner)
 
 ## Risultati
-- [x] Dai risultati ottenuti si ha che per la Binary classification l’algoritmo di classificazione che fa previsioni più corrette è dato dal modello SVM (Support Vector Machine), in grado di classificare correttamente una percentuale maggiore di dati rispetto ad altri modelli testati, con un’accuracy che raggiunge il 95.65%.
+- [x] Dopo aver addestrato diversi modelli, si ha che per la Binary classification l’algoritmo di classificazione che fa previsioni più corrette è dato dal modello SVM (Support Vector Machine), in grado di classificare correttamente una percentuale maggiore di dati rispetto ad altri modelli testati, con un’accuracy che raggiunge il 95.65%.
+
+![img](5.Classification%20Learner/Binary_95.png)
+
 - [x] Nel caso del Multilevel classification, dopo aver applicato la correlazione tra features per capire quali fossero le più utili da considerare e utilizzando il modello Tree, si è riuscito ad ottenere un’accuracy del 78.4%.
+
+![img](5.Classification%20Learner/Multiclass_smote_vc10.png)
 
 ## Autori
 _Alessia Conti, Fulvio Michele Luigi Buono, Alessandro Polverari, Alex Voltattorni, Lorenzo Mozzoni, Raul Fratini_
