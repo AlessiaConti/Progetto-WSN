@@ -40,7 +40,7 @@ peak > 300.001 → Livello 4
 L’obiettivo è il confronto tra questa stima basata su soglie statiche, rispetto al valore che si ottiene con il ML, utilizzando come input le features normalizzate [(3.Normalizzazione)](3.Normalizzazione). 
 
 ## Bilanciamento delle classi
-Un problema riscontrato è che i dati sono pochi e il dataset è sbilanciato; i valori UPDRS su tutti i pazienti sono distribuiti in questo modo: 
+Un problema riscontrato è che i dati sono pochi e il dataset è sbilanciato; la distribuzione di ogni classe, sia per classificazione binaria (0-1) che multiclasse (0-1-2-3-4), è la seguente:
 
 Classificazione binaria:
 Classe | Occorrenze
