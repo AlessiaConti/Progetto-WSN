@@ -3,6 +3,7 @@ Progetto per il corso di Wireless Sensor Network for IoT
 
 ## Obiettivo
 Visto il rapido espandersi dell’uso in ambito sanitario di dispositivi wearable per il monitoraggio dei sintomi motori nella malattia di Parkinson, in questo progetto ci si è posti l’obiettivo di sviluppare un modello di classificazione capace di quantificare il livello di tremore di un soggetto, a partire dai dati acquisiti tramite sensori accelerometrici. 
+
 Il modello si basa sulla correlazione con la scala UPDRS (Unified Parkinson's Disease Rating Scale) e confronta i risultati di un algoritmo basato su soglie statiche con quelli di un modello di Machine Learning addestrato utilizzando specifiche caratteristiche estratte dai segnali. Inoltre, include un classificatore binario che distingue tra stato di tremore e assenza di tremore.
 La scala UPDRS è uno strumento comunemente utilizzato per valutare la gravità della malattia di Parkinson, con valori che vanno da 0 (assenza di tremore) a 4 (tremore grave).
 I dati raccolti sono stati analizzati ed elaborati utilizzando MATLAB, attraverso operazioni di pre-elaborazione, estrazione delle features e sviluppo del modello di classificazione. 
