@@ -30,18 +30,38 @@ L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati 
 
 ## Stima del livello UPDRS e normalizzazione
 Il livello UPDRS viene assegnato in base all'intervallo della variabile peak:
-- peak < 5 → Livello 0
-- 5.001 < peak < 32 → Livello 1
-- 32.001 < peak < 200 → Livello 2
-- 200.001 < peak < 300 → Livello 3
-- peak > 300.001 → Livello 4
+
+``` peak < 5 → Livello 0 ```
+
+``` 5.001 < peak < 32 → Livello 1 ```
+
+``` 32.001 < peak < 200 → Livello 2 ```
+
+``` 200.001 < peak < 300 → Livello 3 ```
+
+``` peak > 300.001 → Livello 4 ```
 
 L’obiettivo è il confronto tra questa stima basata su soglie statiche, rispetto al valore che si ottiene con il ML, utilizzando come input le features normalizzate [(3.Normalizzazione)](3.Normalizzazione). 
 
 ## Bilanciamento delle classi
-Un problema riscontrato è che i dati sono pochi e il dataset è sbilanciato. Per bilanciare le classi è necessario effettuare data augmentation tramite la funzione [SMOTE](https://it.mathworks.com/matlabcentral/fileexchange/75168-oversampling-imbalanced-data-smote-related-algorithms) di MATLAB, che risolve questo problema generando nuovi esempi sintetici per le classi minoritarie. [(4.Bilanciamento classi)](4.Bilanciamento%20classi)
+Un problema riscontrato è che i dati sono pochi e il dataset è sbilanciato; i valori UPDRS su tutti i pazienti sono distribuiti in questo modo: 
 
-![img](4.Bilanciamento%20classi/conteggio.png)
+Classificazione binaria:
+Classe | Occorrenze
+---- | ---- 
+0 | 3 
+1 | 18 
+
+Classificazione multiclasse:
+Classe | Occorrenze
+---- | ----
+0 | 3
+1 | 9
+2 | 5
+3 | 4
+4 | 0
+
+Per bilanciare le classi è necessario effettuare data augmentation tramite la funzione [SMOTE](https://it.mathworks.com/matlabcentral/fileexchange/75168-oversampling-imbalanced-data-smote-related-algorithms) di MATLAB, che risolve questo problema generando nuovi esempi sintetici per le classi minoritarie. [(4.Bilanciamento classi)](4.Bilanciamento%20classi)
 
 ## Classification Learner
 Il Classification Learner è un'applicazione di MATLAB che facilita l'addestramento di modelli di classificazione usando diversi algoritmi e set di features. Prima di utilizzare il Classification Learner, è necessario avere i dati organizzati in una tabella contenente le features e la colonna delle etichette di classe. Il Classification Learner supporta diversi algoritmi di classificazione, tra cui: Decision Tree (alberi decisionali), Support Vector Machine (SVM), K-Nearest Neighbors (KNN), Ensemble Methods, Logistic Regression, Naive Bayes. Dopo aver addestrato il modello si possono valutare le sue prestazioni visualizzando le metriche di Accuracy, Matrice di Confusione e Scatter Plot. [(5.Classification Learner)](5.Classification%20Learner)
