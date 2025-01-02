@@ -4,13 +4,13 @@ Progetto per il corso di Wireless Sensor Network for IoT
 ## Contenuti
 - [Obiettivo](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
 - [Dataset](https://github.com/AlessiaConti/Progetto-WSN#dataset)
-  - [Preprocessing](https://github.com/AlessiaConti/Progetto-WSN#Preprocessing)
-- [Estrazione delle features](https://github.com/AlessiaConti/Progetto-WSN?tab=readme-ov-file#preprocessing)
-  - [Stima del livello UPDRS e normalizzazione](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
-- [Bilanciamento delle classi](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
-- [Classification Learner](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
-  - [Risultati](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
-- [Autori](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
+- [Preprocessing](https://github.com/AlessiaConti/Progetto-WSN#Preprocessing)
+- [Estrazione delle features](https://github.com/AlessiaConti/Progetto-WSN#Estrazione%20delle%20features)
+  - [Stima del livello UPDRS e normalizzazione](https://github.com/AlessiaConti/Progetto-WSN#Stima%20del%20livello%20UPDRS%20e%20normalizzazione)
+- [Bilanciamento delle classi](https://github.com/AlessiaConti/Progetto-WSN#Bilanciamento%20delle%20classi)
+- [Classification Learner](https://github.com/AlessiaConti/Progetto-WSN#Classification%20Learner)
+  - [Risultati](https://github.com/AlessiaConti/Progetto-WSN#Risultati)
+- [Autori](https://github.com/AlessiaConti/Progetto-WSN#Autori)
 
 ## Obiettivo
 Visto il rapido espandersi dell’uso in ambito sanitario di dispositivi wearable per il monitoraggio dei sintomi motori nella malattia di Parkinson, in questo progetto ci si è posti l’obiettivo di sviluppare un modello di classificazione capace di quantificare il livello di tremore di un soggetto, a partire dai dati acquisiti tramite sensori accelerometrici. 
