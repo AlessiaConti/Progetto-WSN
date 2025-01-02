@@ -1,6 +1,9 @@
 # Analisi del tremore 📉📈
 Progetto per il corso di Wireless Sensor Network for IoT
 
+## Contenuti
+- [Obiettivo](https://github.com/AlessiaConti/Progetto-WSN?tab=readme-ov-file#obiettivo)
+
 ## Obiettivo
 Visto il rapido espandersi dell’uso in ambito sanitario di dispositivi wearable per il monitoraggio dei sintomi motori nella malattia di Parkinson, in questo progetto ci si è posti l’obiettivo di sviluppare un modello di classificazione capace di quantificare il livello di tremore di un soggetto, a partire dai dati acquisiti tramite sensori accelerometrici. 
 
@@ -74,7 +77,7 @@ Il Classification Learner è un'applicazione di MATLAB che facilita l'addestrame
 ![img](5.Classification%20Learner/Multiclass_78.png)
 
 ## Autori
-Progetto realizzato da:
+Progetto realizzato da
 
 _Alessia Conti, Fulvio Michele Luigi Buono, Alessandro Polverari, Alex Voltattorni, Lorenzo Mozzoni, Raul Fratini_
 
