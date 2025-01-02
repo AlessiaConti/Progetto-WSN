@@ -4,12 +4,13 @@ Progetto per il corso di Wireless Sensor Network for IoT
 ## Contenuti
 - [Obiettivo](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
 - [Dataset](https://github.com/AlessiaConti/Progetto-WSN#dataset)
-  - [Preprocessing](https://github.com/AlessiaConti/Progetto-WSN#Preprocessing)
+  - Preprocessing
 - [Estrazione delle features](https://github.com/AlessiaConti/Progetto-WSN#Estrazione%20delle%20features)
-  - [Stima del livello UPDRS e normalizzazione](https://github.com/AlessiaConti/Progetto-WSN#Stima%20del%20livello%20UPDRS%20e%20normalizzazione)
+  - Stima del livello UPDRS e normalizzazione
 - [Bilanciamento delle classi](https://github.com/AlessiaConti/Progetto-WSN#Bilanciamento%20delle%20classi)
 - [Classification Learner](https://github.com/AlessiaConti/Progetto-WSN#Classification%20Learner)
-  - [Risultati](https://github.com/AlessiaConti/Progetto-WSN#Risultati)
+  - Risultati Binary classification
+  - Risultati Multilevel classification
 - [Autori](https://github.com/AlessiaConti/Progetto-WSN#Autori)
 
 ## Obiettivo
@@ -75,12 +76,13 @@ Per bilanciare le classi è necessario effettuare data augmentation tramite la f
 ## Classification Learner
 Il Classification Learner è un'applicazione di MATLAB che facilita l'addestramento di modelli di classificazione usando diversi algoritmi e set di features. Prima di utilizzare il Classification Learner, è necessario avere i dati organizzati in una tabella contenente le features e la colonna delle etichette di classe. Il Classification Learner supporta diversi algoritmi di classificazione, tra cui: Decision Tree (alberi decisionali), Support Vector Machine (SVM), K-Nearest Neighbors (KNN), Ensemble Methods, Logistic Regression, Naive Bayes. Dopo aver addestrato il modello si possono valutare le sue prestazioni visualizzando le metriche di Accuracy, Matrice di Confusione e Scatter Plot. [(5.Classification Learner)](5.Classification%20Learner)
 
-### Risultati
-- Dopo aver addestrato diversi modelli, si ha che per la Binary classification l’algoritmo di classificazione che fa previsioni più corrette è dato dal modello SVM (Support Vector Machine), in grado di classificare correttamente una percentuale maggiore di dati rispetto ad altri modelli testati, con un’accuracy che raggiunge il 95.65%.
+### Risultati Binary classification
+Dopo aver addestrato diversi modelli, si ha che per la Binary classification l’algoritmo di classificazione che fa previsioni più corrette è dato dal modello SVM (Support Vector Machine), in grado di classificare correttamente una percentuale maggiore di dati rispetto ad altri modelli testati, con un’accuracy che raggiunge il 95.65%.
 
 ![img](5.Classification%20Learner/Binary_95.png)
 
-- Nel caso del Multilevel classification, dopo aver applicato la correlazione tra features per capire quali fossero le più utili da considerare e utilizzando il modello Tree, si è riuscito ad ottenere un’accuracy del 78.4%.
+### Risultati Multilevel classification
+Nel caso del Multilevel classification, dopo aver applicato la correlazione tra features per capire quali fossero le più utili da considerare e utilizzando il modello Tree, si è riuscito ad ottenere un’accuracy del 78.4%.
 
 ![img](5.Classification%20Learner/Multiclass_78.png)
 
