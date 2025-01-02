@@ -3,6 +3,14 @@ Progetto per il corso di Wireless Sensor Network for IoT
 
 ## Contenuti
 - [Obiettivo](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
+- [Dataset](https://github.com/AlessiaConti/Progetto-WSN#dataset)
+  - [Preprocessing](https://github.com/AlessiaConti/Progetto-WSN#Preprocessing)
+- [Estrazione delle features](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
+  - [Stima del livello UPDRS e normalizzazione](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
+- [Bilanciamento delle classi](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
+- [Classification Learner](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
+  - [Risultati](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
+- [Autori](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
 
 ## Obiettivo
 Visto il rapido espandersi dell’uso in ambito sanitario di dispositivi wearable per il monitoraggio dei sintomi motori nella malattia di Parkinson, in questo progetto ci si è posti l’obiettivo di sviluppare un modello di classificazione capace di quantificare il livello di tremore di un soggetto, a partire dai dati acquisiti tramite sensori accelerometrici. 
@@ -14,7 +22,7 @@ I dati raccolti sono stati analizzati ed elaborati utilizzando MATLAB, attravers
 ## Dataset
 Il dataset utilizzato per sviluppare il progetto, reperibile sul sito [ieee-dataport](https://ieee-dataport.org/open-access/pd-biostamprc21-parkinsons-disease-accelerometry-dataset-five-wearable-sensor-study-0) ed etichettato dalla supervisione dei neurologi, è denominato “PD-BioStamp RC 21” e contiene dati derivanti da un sensore accelerometrico utilizzati per studiare il tremore e altri sintomi motori presenti sia in soggetti con malattia di Parkinson che in soggetti cosiddetti ‘di controllo’. Il dataset è formato da più documenti, in particolare il file denominato [Clinic_Data_PD_BioStampRCStudy.csv](0.Dataset/Clinic_DataPDBioStampRCStudy.csv) contiene tutte le informazioni relative ai soggetti considerati e include: l’identificativo di ogni singolo soggetto che costituisce il dataset, il sesso, lo status (cioè se si tratta di un soggetto parkinsoniano oppure di controllo), l’età, la tipologia di test cui è stato sottoposto (per esempio l’etichetta ‘3_17’ indica che si tratta di un test a riposo, la lettera definisce la posizione del sensore e la dicitura on/off si riferisce alla medicazione). Nella tabella viene riportato il valore UPDRS associato a ciascuna prova svolta, per ogni paziente.
 
-## Preprocessing
+### Preprocessing
 Poiché l’obiettivo del nostro lavoro è quello di studiare solo il tremore a riposo sugli arti superiori, è stato necessario effettuare delle operazioni di pre-processing e filtraggio per estrarre dal dataset solo i dati utili per i nostri scopi [(1.Preprocessing)](1.Preprocessing).
 - [x] Per prima cosa dal file Annot di ogni paziente sono stati estratti solo i dati relativi alle prove di nostro interesse, identificati dalle etichette "updrs_3_17a" (RUE - Right Upper Extremity) e "updrs_3_17b" (LUE - Left Upper Extremity), ovvero le colonne 5 e 6.
 - [x] Dopodiché, a partire da questi dati, è stato possibile ricavare i valori di accelerazione corrispondenti; i file utilizzati per estrarre le accelerazioni di ogni paziente sono denominati “rh” (Right anterior forearm) e “lh” (Left anterior forearm).
@@ -33,7 +41,7 @@ L'estrazione delle features è un passaggio fondamentale che serve a trasformare
 
 L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati sono stati raccolti in una tabella in formato CSV. [(2.Features)](2.Features) E' stata aggiunta anche una colonna per la classificazione binaria: partendo dal valore UPDRS reale, viene assegnata l’etichetta 0 in caso di non tremore, 1 per i livelli di tremore 1-2-3-4. Ciò potrebbe essere utile a causa della scarsità dei dati estratti: classificando in base a tremore/non tremore, l’accuratezza dovrebbe migliorare rispetto alla classificazione per livelli.
 
-## Stima del livello UPDRS e normalizzazione
+### Stima del livello UPDRS e normalizzazione
 Il livello UPDRS viene assegnato in base all'intervallo della variabile peak:
 ```
 peak < 5 → Livello 0 
@@ -67,7 +75,7 @@ Per bilanciare le classi è necessario effettuare data augmentation tramite la f
 ## Classification Learner
 Il Classification Learner è un'applicazione di MATLAB che facilita l'addestramento di modelli di classificazione usando diversi algoritmi e set di features. Prima di utilizzare il Classification Learner, è necessario avere i dati organizzati in una tabella contenente le features e la colonna delle etichette di classe. Il Classification Learner supporta diversi algoritmi di classificazione, tra cui: Decision Tree (alberi decisionali), Support Vector Machine (SVM), K-Nearest Neighbors (KNN), Ensemble Methods, Logistic Regression, Naive Bayes. Dopo aver addestrato il modello si possono valutare le sue prestazioni visualizzando le metriche di Accuracy, Matrice di Confusione e Scatter Plot. [(5.Classification Learner)](5.Classification%20Learner)
 
-## Risultati
+### Risultati
 - Dopo aver addestrato diversi modelli, si ha che per la Binary classification l’algoritmo di classificazione che fa previsioni più corrette è dato dal modello SVM (Support Vector Machine), in grado di classificare correttamente una percentuale maggiore di dati rispetto ad altri modelli testati, con un’accuracy che raggiunge il 95.65%.
 
 ![img](5.Classification%20Learner/Binary_95.png)
