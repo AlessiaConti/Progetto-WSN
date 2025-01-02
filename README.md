@@ -24,7 +24,7 @@ I dati raccolti sono stati analizzati ed elaborati utilizzando MATLAB, attravers
 Il dataset utilizzato per sviluppare il progetto, reperibile sul sito [ieee-dataport](https://ieee-dataport.org/open-access/pd-biostamprc21-parkinsons-disease-accelerometry-dataset-five-wearable-sensor-study-0) ed etichettato dalla supervisione dei neurologi, è denominato “PD-BioStamp RC 21” e contiene dati derivanti da un sensore accelerometrico utilizzati per studiare il tremore e altri sintomi motori presenti sia in soggetti con malattia di Parkinson che in soggetti cosiddetti ‘di controllo’. Il dataset è formato da più documenti, in particolare il file denominato [Clinic_Data_PD_BioStampRCStudy.csv](0.Dataset/Clinic_DataPDBioStampRCStudy.csv) contiene tutte le informazioni relative ai soggetti considerati e include: l’identificativo di ogni singolo soggetto che costituisce il dataset, il sesso, lo status (cioè se si tratta di un soggetto parkinsoniano oppure di controllo), l’età, la tipologia di test cui è stato sottoposto (per esempio l’etichetta ‘3_17’ indica che si tratta di un test a riposo, la lettera definisce la posizione del sensore e la dicitura on/off si riferisce alla medicazione). Nella tabella viene riportato il valore UPDRS associato a ciascuna prova svolta, per ogni paziente.
 
 ### Preprocessing
-Poiché l’obiettivo del nostro lavoro è quello di studiare solo il tremore a riposo sugli arti superiori, è stato necessario effettuare delle operazioni di pre-processing e filtraggio per estrarre dal dataset solo i dati utili per i nostri scopi [(1.Preprocessing)](1.Preprocessing).
+Poiché l’obiettivo del nostro lavoro è quello di studiare solo il tremore a riposo sugli arti superiori, è stato necessario effettuare delle operazioni di pre-processing e filtraggio per estrarre dal dataset solo i dati utili per i nostri scopi (Vedere cartella [1.Preprocessing](1.Preprocessing))
 - [x] Per prima cosa dal file Annot di ogni paziente sono stati estratti solo i dati relativi alle prove di nostro interesse, identificati dalle etichette "updrs_3_17a" (RUE - Right Upper Extremity) e "updrs_3_17b" (LUE - Left Upper Extremity), ovvero le colonne 5 e 6.
 - [x] Dopodiché, a partire da questi dati, è stato possibile ricavare i valori di accelerazione corrispondenti; i file utilizzati per estrarre le accelerazioni di ogni paziente sono denominati “rh” (Right anterior forearm) e “lh” (Left anterior forearm).
 - [x] A questo punto, i valori estratti sono stati associati a quelli della scala UPDRS presenti sulla tabella ClinicData.
@@ -40,7 +40,7 @@ L'estrazione delle features è un passaggio fondamentale che serve a trasformare
 - **SF50**: la larghezza dello spettro attorno alla frequenza F50, cioè la banda di frequenze che contiene il 68% della potenza totale del segnale.
 - **statistiche**: massimo e minimo, media, moda e mediana, deviazione standard, asimmetria dello spettro, appiattimento (curtosi) e ampiezza picco-picco.
 
-L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati sono stati raccolti in una tabella in formato CSV. [(2.Features)](2.Features) E' stata aggiunta anche una colonna per la classificazione binaria: partendo dal valore UPDRS reale, viene assegnata l’etichetta 0 in caso di non tremore, 1 per i livelli di tremore 1-2-3-4. Ciò potrebbe essere utile a causa della scarsità dei dati estratti: classificando in base a tremore/non tremore, l’accuratezza dovrebbe migliorare rispetto alla classificazione per livelli.
+L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati sono stati raccolti in una tabella in formato CSV (Vedere cartella [2.Features](2.Features)). E' stata aggiunta anche una colonna per la classificazione binaria: partendo dal valore UPDRS reale, viene assegnata l’etichetta 0 in caso di non tremore, 1 per i livelli di tremore 1-2-3-4. Ciò potrebbe essere utile a causa della scarsità dei dati estratti: classificando in base a tremore/non tremore, l’accuratezza dovrebbe migliorare rispetto alla classificazione per livelli.
 
 ### Stima del livello UPDRS e normalizzazione
 Il livello UPDRS viene assegnato in base all'intervallo della variabile peak:
@@ -51,7 +51,7 @@ peak < 5 → Livello 0
 200.001 < peak < 300 → Livello 3 
 peak > 300.001 → Livello 4
 ```
-L’obiettivo è il confronto tra questa stima basata su soglie statiche, rispetto al valore che si ottiene con il ML, utilizzando come input le features normalizzate [(3.Normalizzazione)](3.Normalizzazione). 
+L’obiettivo è il confronto tra questa stima basata su soglie statiche, rispetto al valore che si ottiene con il ML, utilizzando come input le features normalizzate (Vedere cartella [3.Normalizzazione](3.Normalizzazione)). 
 
 ## Bilanciamento delle classi
 Un problema riscontrato è che i dati sono pochi e il dataset è sbilanciato; la distribuzione di ogni classe, sia per classificazione binaria (0-1) che multiclasse (0-1-2-3-4), è la seguente:
@@ -71,10 +71,10 @@ Classe | Occorrenze
 3 | 4
 4 | 0
 
-Per bilanciare le classi è necessario effettuare data augmentation tramite la funzione [SMOTE](https://it.mathworks.com/matlabcentral/fileexchange/75168-oversampling-imbalanced-data-smote-related-algorithms) di MATLAB, che risolve questo problema generando nuovi esempi sintetici per le classi minoritarie. [(4.Bilanciamento classi)](4.Bilanciamento%20classi)
+Per bilanciare le classi è necessario effettuare data augmentation tramite la funzione [SMOTE](https://it.mathworks.com/matlabcentral/fileexchange/75168-oversampling-imbalanced-data-smote-related-algorithms) di MATLAB, che risolve questo problema generando nuovi esempi sintetici per le classi minoritarie (Vedere cartella [4.Bilanciamento classi](4.Bilanciamento%20classi)).
 
 ## Classification Learner
-Il Classification Learner è un'applicazione di MATLAB che facilita l'addestramento di modelli di classificazione usando diversi algoritmi e set di features. Prima di utilizzare il Classification Learner, è necessario avere i dati organizzati in una tabella contenente le features e la colonna delle etichette di classe. Il Classification Learner supporta diversi algoritmi di classificazione, tra cui: Decision Tree (alberi decisionali), Support Vector Machine (SVM), K-Nearest Neighbors (KNN), Ensemble Methods, Logistic Regression, Naive Bayes. Dopo aver addestrato il modello si possono valutare le sue prestazioni visualizzando le metriche di Accuracy, Matrice di Confusione e Scatter Plot. [(5.Classification Learner)](5.Classification%20Learner)
+Il Classification Learner è un'applicazione di MATLAB che facilita l'addestramento di modelli di classificazione usando diversi algoritmi e set di features. Prima di utilizzare il Classification Learner, è necessario avere i dati organizzati in una tabella contenente le features e la colonna delle etichette di classe. Il Classification Learner supporta diversi algoritmi di classificazione, tra cui: Decision Tree (alberi decisionali), Support Vector Machine (SVM), K-Nearest Neighbors (KNN), Ensemble Methods, Logistic Regression, Naive Bayes. Dopo aver addestrato il modello si possono valutare le sue prestazioni visualizzando le metriche di Accuracy, Matrice di Confusione e Scatter Plot. (Vedere cartella [5.Classification Learner](5.Classification%20Learner)).
 
 ### Risultati Binary classification
 Dopo aver addestrato diversi modelli, si ha che per la Binary classification l’algoritmo di classificazione che fa previsioni più corrette è dato dal modello SVM (Support Vector Machine), in grado di classificare correttamente una percentuale maggiore di dati rispetto ad altri modelli testati, con un’accuracy che raggiunge il 95.65%.
