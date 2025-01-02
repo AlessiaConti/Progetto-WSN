@@ -26,7 +26,7 @@ L'estrazione delle features è un passaggio fondamentale che serve a trasformare
 - **Fo**: la frequenza associata al picco massimo, cioè la frequenza dominante, quella con il contenuto energetico maggiore nel segnale
 - **F50**: la frequenza mediana sotto la quale è contenuto il 50% della potenza totale del segnale 
 - **SF50**: la larghezza dello spettro attorno alla frequenza F50, cioè la banda di frequenze che contiene il 68% della potenza totale del segnale.
-- **statistiche**: massimo e minimo, media, moda e mediana, deviazione standard, asimmetria dello spettro (skewness) e appiattimento (curtosi), ampiezza picco-picco.
+- **statistiche**: massimo e minimo, media, moda e mediana, deviazione standard, asimmetria dello spettro, appiattimento (curtosi) e ampiezza picco-picco.
 
 L'estrazione delle features è stata eseguita su 12 pazienti, 21 prove e i dati sono stati raccolti in una tabella in formato CSV. [(2.Features)](2.Features) E' stata aggiunta anche una colonna per la classificazione binaria: partendo dal valore UPDRS reale, viene assegnata l’etichetta 0 in caso di non tremore, 1 per i livelli di tremore 1-2-3-4. Ciò potrebbe essere utile a causa della scarsità dei dati estratti: classificando in base a tremore/non tremore, l’accuratezza dovrebbe migliorare rispetto alla classificazione per livelli.
 
