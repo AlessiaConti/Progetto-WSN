@@ -74,6 +74,8 @@ Il Classification Learner è un'applicazione di MATLAB che facilita l'addestrame
 ![img](5.Classification%20Learner/Multiclass_78.png)
 
 ## Autori
+Progetto realizzato da:
+
 _Alessia Conti, Fulvio Michele Luigi Buono, Alessandro Polverari, Alex Voltattorni, Lorenzo Mozzoni, Raul Fratini_
 
 
