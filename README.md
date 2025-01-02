@@ -5,7 +5,7 @@ Progetto per il corso di Wireless Sensor Network for IoT
 - [Obiettivo](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
 - [Dataset](https://github.com/AlessiaConti/Progetto-WSN#dataset)
   - [Preprocessing](https://github.com/AlessiaConti/Progetto-WSN#Preprocessing)
-- [Estrazione delle features](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
+- [Estrazione delle features](https://github.com/AlessiaConti/Progetto-WSN?tab=readme-ov-file#preprocessing)
   - [Stima del livello UPDRS e normalizzazione](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
 - [Bilanciamento delle classi](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
 - [Classification Learner](https://github.com/AlessiaConti/Progetto-WSN#obiettivo)
